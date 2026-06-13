@@ -1,0 +1,118 @@
+============================================================
+  AUTOMATIC CONSTRUCTION OF DFA FROM REGULAR EXPRESSION
+  Compiler Construction - Open Ended Lab Project
+  Submitted by: Tehreem Zubair (68610) & Diya Pahooja (68699)
+============================================================
+
+Enter a regular expression (supports: a-z, 0-9, |, *, (, ) )
+Example: (a|b)*abb
+Regex: (a|b)*abb
+
+Input Regular Expression: (a|b)*abb
+Postfix form: ab|*a.b.b.
+
+========== NFA (Thompson's Construction) ==========
+Number of states: 14
+Start state: 0
+Accept state: 13
+
+Transitions (ordered by source state):
+
+  From State 0:
+    +-- e --> 1
+    +-- e --> 1
+
+  From State 1:
+    +-- e --> 2
+    +-- e --> 4
+    +-- e --> 8
+
+  From State 2:
+    +-- e --> 1
+    +-- e --> 1
+    +-- a --> 3
+
+  From State 3:
+    +-- e --> 2
+
+  From State 4:
+    +-- b --> 5
+
+  From State 5:
+    +-- e --> 2
+
+  From State 8:
+    +-- a --> 9
+
+  From State 9:
+    +-- e --> 10
+
+  From State 10:
+    +-- b --> 11
+
+  From State 11:
+    +-- e --> 12
+
+  From State 12:
+    +-- b --> 13
+
+===================================================
+
+========== DFA (Before Minimization) ==========
+States: 5
+Start state: 0
+Final states: 4
+
+Transition Table:
+State   |       a       |       b
+0       |       1       |       2
+1       |       1       |       3
+2       |       1       |       2
+3       |       1       |       4
+4       |       1       |       2
+======================================
+
+========== MINIMIZED DFA ==========
+States: 4
+Start state: 0
+Final states: 3
+
+Transition Table:
+State   |       a       |       b
+0       |       1       |       0
+1       |       1       |       2
+2       |       1       |       3
+3       |       1       |       0
+======================================
+
+========== STRING VALIDATION ==========
+
+
+Enter a string to validate (or 'quit' to exit): aabb
+Result: ACCEPTED
+
+Enter a string to validate (or 'quit' to exit): babb
+Result: ACCEPTED
+
+Enter a string to validate (or 'quit' to exit): abb
+Result: ACCEPTED
+
+Enter a string to validate (or 'quit' to exit): aaa
+Result: REJECTED
+
+Enter a string to validate (or 'quit' to exit): bbb
+Result: REJECTED
+
+Enter a string to validate (or 'quit' to exit): quit
+
+Exiting string validation...
+
+========== PROJECT SUMMARY ==========
+[SUCCESS] Regular Expression: (a|b)*abb
+[SUCCESS] NFA states generated: 14
+[SUCCESS] DFA states (pre-minimization): 5
+[SUCCESS] Minimized DFA states: 4
+[SUCCESS] Alphabet size: 2
+[SUCCESS] Reduction achieved: 5 -> 4 states
+
+Project completed successfully.
